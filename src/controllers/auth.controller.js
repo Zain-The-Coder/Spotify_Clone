@@ -31,12 +31,13 @@ async function registerUser (req , res) {
         });
 
         const token = jwt.sign({
-            _id : user._id ,
+            id : user._id ,
             role : user.role
         } , process.env.JWT_SECRET , {
             expiresIn : "7d"
         });
 
+        res.cookie("token" , token); 
         res.status(201).json({
             status : 201 , 
             message : "User Created Successfully !" , 
