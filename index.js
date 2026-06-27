@@ -3,8 +3,11 @@ const app = require('./src/app.js');
 require('dotenv').config();
 const connectDb = require('./src/db/db.js')
 
-app.listen(3000 , () => {
-    console.log(chalk.bold.green("Server Is Running On Port 3000"));
+const PORT = 8000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
 });
+
 connectDb();
 
