@@ -44,7 +44,7 @@ async function authUser (req , res , next) {
     };  
     const decoded = jwt.verify(token , process.env.JWT_SECRET);
 
-        if(decoded.role !== "artist" || decoded.role !== "user") {
+        if(decoded.role !== "artist" && decoded.role !== "user") {
             return res.status(403).json({
                 status : 403 , 
                 error_Message : "You are not access to create a music"
