@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken');
 
 async function authArtist ( req , res , next ) {
     try {
-    const token = req.cookies.token ;
-
+const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
     if(!token) {
         return res.status(401).json({
             status : 401 , 
@@ -34,8 +33,7 @@ async function authArtist ( req , res , next ) {
 
 async function authUser (req , res , next) {
     try {
-    const token = req.cookies.token ;
-
+const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
     if(!token) {
         return res.status(401).json({
             status : 401 , 
@@ -64,8 +62,7 @@ async function authUser (req , res , next) {
 }
 
 async function authenticate (req , res , next) {
-    const token = req.cookies.token ;
-
+const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
     if(!token) {
         return res.status(403).json({
             status : 403 , 
